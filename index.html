@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QREncode: Generate and Download QR Codes">
+    
+    <!-- Scripts -->
+    <script src="assets/js/script.js" defer></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/qr-icon.svg" type="image/x-icon">
+
+    <title>QREncode</title>
+</head>
+<body class="bg">
+    <!-- Overlay  -->
+    <div class="overlay active"></div> 
+
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="assets/images/qr-icon.svg" alt="qr-icon">
+            <span>QREncode</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+         <!-- Content -->
+        <div class="content-container">
+            <div class="img-container">
+                <img src="assets/images/fondo.webp" alt="qr-image">
+            </div>
+            <div class="content">
+                <!-- Title -->
+                <h1><span class="title">QREncode: </span>Generate and Download QR Codes</h1> 
+                <!-- Description -->
+                <p>Enter your URL below to generate a QR Code and download the image</p>
+                 <!-- Form -->
+                <form id="generate-form">
+                    <input id="url" type="url" placeholder="Enter a URL" required>
+                    <select id="size">
+                        <option value="100">100x100</option>
+                        <option value="200">200x200</option>
+                        <option value="300" selected >300x300</option>
+                        <option value="400">400x400</option>
+                        <option value="500">500x500</option>
+                        <option value="600">600x600</option>
+                    </select>
+                    <button type="submit">Generate QR Code</button>
+                </form>
+            </div>
+        </div>
+       <!-- Generated QR Code -->
+        <div id="generated" class="qr-container">
+            <span id="loader"></span>
+
+            <!-- QR Code Output -->
+            <div id="qr-code"></div>
+        </div>
+    </main>
+    <!-- End Main -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Created by </p>
+        <img src="assets/images/github.svg" alt="github icon">
+        <a target="_blank" href="https://github.com/naisireth">Naisireth</a>
+    </footer>
+
+    <!-- External QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
