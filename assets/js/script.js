@@ -1,6 +1,7 @@
 const form = document.getElementById('generate-form')
 const qr = document.getElementById('qr-code')
 
+// Función que se ejecuta al enviar el formulario
 const onGenerateSubmit = (e) => {
     e.preventDefault();
 
@@ -11,9 +12,7 @@ const onGenerateSubmit = (e) => {
 
     console.log(url, size)
 
-    if(url === '') {
-        alert('Please enter a URL');
-    } else {
+    if(url !== '') {
         showSpinner();
         setTimeout(() => {
             hideSpinner();
@@ -28,6 +27,7 @@ const onGenerateSubmit = (e) => {
     }
 }
 
+// Función para generar el código QR
 const generateQRCode = (url, size) => {
     
     const fixedSize = 250;
@@ -39,6 +39,7 @@ const generateQRCode = (url, size) => {
     });
 }
 
+// Función para mostrar el spinner de carga
 const showSpinner = () => {
     document.getElementById('loader').style.display = 'block';
     document.querySelector('.overlay').style.display = 'block';
@@ -47,10 +48,12 @@ const showSpinner = () => {
       }, 1000); 
 }
 
+// Función para ocultar el spinner de carga
 const hideSpinner = () => {
     document.getElementById('loader').style.display = 'none';
 }
 
+// Función para limpiar la interfaz de usuario
 const clearUI = () => {
     qr.innerHTML = '';
     const saveLink = document.getElementById('save-link');
@@ -60,6 +63,7 @@ const clearUI = () => {
     }
 }
 
+// Función para crear el botón de guardar imagen
 const createSaveBtn = (saveUrl) => {
     const link = document.createElement('a');
     link.id = 'save-link';
@@ -69,7 +73,8 @@ const createSaveBtn = (saveUrl) => {
     link.innerHTML = 'Save Image';
   
     link.addEventListener('click', function() {
-      const selectedSize = document.getElementById('size').value; // Obtener el tamaño seleccionado del formulario
+      // Obtener el tamaño seleccionado del formulario
+      const selectedSize = document.getElementById('size').value; 
   
       // Redimensionar el QR code descargado al tamaño seleccionado en el formulario
       link.href = resizeImage(saveUrl, selectedSize, selectedSize);
@@ -83,7 +88,7 @@ const createSaveBtn = (saveUrl) => {
     document.getElementById('qr-code').appendChild(link);
   };
   
-  // Función para redimensionar una imagen
+  // Función para redimensionar la imagen del QR
   const resizeImage = (imageUrl, newWidth, newHeight) => {
     const canvas = document.createElement('canvas');
     canvas.width = newWidth;
@@ -108,14 +113,15 @@ document.addEventListener('click', function(event) {
   
     // Verificar si el objetivo del clic no es el elemento #qr-code ni uno de sus descendientes
     if (!qrCode.contains(event.target)) {
-      qrCode.style.display = 'none'; // Ocultar el elemento #qr-code
+      // Ocultar el elemento #qr-code
+      qrCode.style.display = 'none'; 
       document.querySelector('.overlay').style.display = 'none';
 
     }
   });
 
 
-
+// Agregar evento de desplazamiento al documento
 window.addEventListener('scroll', function() {
     var navbar = document.querySelector('.navbar');
     var scrolled = window.scrollY > 0;
