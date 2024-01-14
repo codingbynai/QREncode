@@ -1,8 +1,8 @@
-const form = document.getElementById('generate-form')
-const qr = document.getElementById('qr-code')
+  const form = document.getElementById('generate-form')
+  const qr = document.getElementById('qr-code')
 
-// Función que se ejecuta al enviar el formulario
-const onGenerateSubmit = (e) => {
+  // Function that is executed when the form is submitted
+  const onGenerateSubmit = (e) => {
     e.preventDefault();
 
     clearUI();
@@ -25,46 +25,46 @@ const onGenerateSubmit = (e) => {
             }, 50);
         }, 1000)
     }
-}
+  }
 
-// Función para generar el código QR
-const generateQRCode = (url, size) => {
-    
-    const fixedSize = 250;
+  // Function to generate the QR code
+  const generateQRCode = (url, size) => {
+      
+      const fixedSize = 250;
 
-    const qrcode = new QRCode('qr-code', {
-      text: url,
-      width: fixedSize,
-      height: fixedSize,
-    });
-}
+      const qrcode = new QRCode('qr-code', {
+        text: url,
+        width: fixedSize,
+        height: fixedSize,
+      });
+  }
 
-// Función para mostrar el spinner de carga
-const showSpinner = () => {
-    document.getElementById('loader').style.display = 'block';
-    document.querySelector('.overlay').style.display = 'block';
-    setTimeout(() => {
-        document.getElementById('qr-code').style.display = 'block';
-      }, 1000); 
-}
+  // Function to show the loading spinner
+  const showSpinner = () => {
+      document.getElementById('loader').style.display = 'block';
+      document.querySelector('.overlay').style.display = 'block';
+      setTimeout(() => {
+          document.getElementById('qr-code').style.display = 'block';
+        }, 1000); 
+  }
 
-// Función para ocultar el spinner de carga
-const hideSpinner = () => {
-    document.getElementById('loader').style.display = 'none';
-}
+  // Function to hide the loading spinner
+  const hideSpinner = () => {
+      document.getElementById('loader').style.display = 'none';
+  }
 
-// Función para limpiar la interfaz de usuario
-const clearUI = () => {
-    qr.innerHTML = '';
-    const saveLink = document.getElementById('save-link');
-    if(saveLink) {
-        saveLink.remove();
-        document.getElementById('qr-code').style.display = 'none';
-    }
-}
+  // Function to clean up the user interface
+  const clearUI = () => {
+      qr.innerHTML = '';
+      const saveLink = document.getElementById('save-link');
+      if(saveLink) {
+          saveLink.remove();
+          document.getElementById('qr-code').style.display = 'none';
+      }
+  }
 
-// Función para crear el botón de guardar imagen
-const createSaveBtn = (saveUrl) => {
+  // Function to create the save image button
+  const createSaveBtn = (saveUrl) => {
     const link = document.createElement('a');
     link.id = 'save-link';
     link.classList.add('link');
@@ -73,10 +73,10 @@ const createSaveBtn = (saveUrl) => {
     link.innerHTML = 'Save Image';
   
     link.addEventListener('click', function() {
-      // Obtener el tamaño seleccionado del formulario
+      // Get the selected size of the form
       const selectedSize = document.getElementById('size').value; 
   
-      // Redimensionar el QR code descargado al tamaño seleccionado en el formulario
+      // Resize the downloaded QR code to the size selected in the form
       link.href = resizeImage(saveUrl, selectedSize, selectedSize);
   
       document.getElementById('qr-code').style.display = 'none';
@@ -88,7 +88,7 @@ const createSaveBtn = (saveUrl) => {
     document.getElementById('qr-code').appendChild(link);
   };
   
-  // Función para redimensionar la imagen del QR
+  // Function to resize the QR image
   const resizeImage = (imageUrl, newWidth, newHeight) => {
     const canvas = document.createElement('canvas');
     canvas.width = newWidth;
@@ -103,17 +103,17 @@ const createSaveBtn = (saveUrl) => {
   };
   
 
-hideSpinner();
+  hideSpinner();
 
-form.addEventListener('submit', onGenerateSubmit);
+  form.addEventListener('submit', onGenerateSubmit);
 
-// Agregar evento de clic al documento
-document.addEventListener('click', function(event) {
-    const qrCode = document.getElementById('qr-code');
+  // Add click event to document
+  document.addEventListener('click', function(event) {
+      const qrCode = document.getElementById('qr-code');
   
-    // Verificar si el objetivo del clic no es el elemento #qr-code ni uno de sus descendientes
+    // Check if the target of the click is not the #qr-code element or one of its descendants
     if (!qrCode.contains(event.target)) {
-      // Ocultar el elemento #qr-code
+      // Hide the #qr-code element
       qrCode.style.display = 'none'; 
       document.querySelector('.overlay').style.display = 'none';
 
@@ -121,8 +121,8 @@ document.addEventListener('click', function(event) {
   });
 
 
-// Agregar evento de desplazamiento al documento
-window.addEventListener('scroll', function() {
+  // Add scroll event to document
+  window.addEventListener('scroll', function() {
     var navbar = document.querySelector('.navbar');
     var scrolled = window.scrollY > 0;
     
